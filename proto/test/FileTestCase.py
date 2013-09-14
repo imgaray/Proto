@@ -17,7 +17,6 @@ class FileTestCase(unittest2.TestCase):
 		stub = sb.sBuilder()
 		testfile = proto.File("test", sd.sDirectory(), stub)
 		testfile.build()
-		print stub.files
 		self.assertEqual("test/test", stub.files[0])
 		
 

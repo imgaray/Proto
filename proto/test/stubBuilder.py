@@ -12,3 +12,7 @@ class sBuilder(object):
 	@property
 	def files(self):
 		return self.filesbuilt
+
+	@property
+	def directories(self):
+		return self.directoriesbuilt

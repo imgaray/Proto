@@ -1,6 +1,9 @@
+from File import File
+
 class Directory(object):
 	def __init__(self, dirname, parent, directoryBuilder, fileBuilder):
-		self._dirname = dirname
+		assert(dirname is not None and directoryBuilder is not None and fileBuilder is not None)
+		self.dirname = dirname
 		self.directoryBuilder = directoryBuilder
 		self.fileBuilder = fileBuilder
 		self.parent = parent
@@ -9,7 +12,7 @@ class Directory(object):
 	def build(self):
 		self.directoryBuilder.buildDirectory(self.fullPath)
 		for filename in self.filemap:
-			filemap[filename].build()
+			self.filemap[filename].build()
 	
 	def hasFile(self, filename):
 		return filename in self.filemap
@@ -20,6 +23,14 @@ class Directory(object):
 		
 	@property	
 	def fullPath(self):
-		if self.parent == none:
+		if self.parent == None:
 			return self.name
-		return self.parent.fullPath + "/" + self.filename
+		return self.parent.fullPath + "/" + self.name
+	
+	@property	
+	def filesCount(self):
+		return len(self.filemap)
+
+	@property
+	def name(self):
+		return self.dirname
