@@ -1,0 +1,17 @@
+setup.py
+proto/Class.py
+proto/Directory.py
+proto/DirectorySchema.py
+proto/File.py
+proto/Generator.py
+proto/GlobalConfiguration.py
+proto/LogicSchema.py
+proto/Package.py
+proto/ProjectFactory.py
+proto/__init__.py
+proto/utils.py
+proto.egg-info/PKG-INFO
+proto.egg-info/SOURCES.txt
+proto.egg-info/dependency_links.txt
+proto.egg-info/not-zip-safe
+proto.egg-info/top_level.txt
