@@ -6,11 +6,10 @@ class DirectorySchema(object):
 	
 	def __init__(self, root, fileBuilder, directoryBuilder):
 		assert( root is not None and fileBuilder is not None and directoryBuilder is not None)
-		self.directoryMap = {}
 		self._root = Directory(root, None, directoryBuilder, fileBuilder)
 		self.directoryBuilder = directoryBuilder
 		self.fileBuilder = fileBuilder
-		self.directoryMap[root] = self._root
+		self.dircount = 1
 	
 	@property
 	def root(self):
@@ -18,40 +17,26 @@ class DirectorySchema(object):
 		
 	@property
 	def dirCount(self):
-		return len(self.directoryMap)
-	
-	def addDirectoryToRoot(self, directory):
-		""" adds a directory to the root directory.
-		args: directory(string), the name of the directory"""
-		self.addDirectoryTo(directory, self.root)
-	
-	def addDirectoryTo(self, directory, parent):
-		""" adds a directory to the root directory.
-		args: directory(string), the name of the directory
-			parent(string), the name of the parent directory"""
-		assert(directory is not None and parent is not None)
-		assert(directory != parent)
-		assert(parent in self.directoryMap)
-		assert(directory not in self.directoryMap)
-		self.directoryMap[directory] = Directory(directory, self.directoryMap[parent], self.directoryBuilder, self.fileBuilder)
+		return self.dircount
 			
-	def addFileTo(self, filename, directory):
+	def addDirectory(self, directory):
+		""" adds a directory to the directory schema.
+		args: directory(string), the full path of the directory"""
+		assert(directory is not None and directory != self.root)
+		self._root.addDir(directory)
+		self.dircount += 1
+					
+	def addFile(self, filepath):
 		"""adds a file to a specific directory.
 		args: filename(string), the name of the filename
-			directory(string), the name of the directory where the file 
+			directory(string), the full path of the directory where the file 
 			would be inserted"""
-		assert(directory not in self.directoryMap)
-		assert(not self.directoryMap[directory].hasFile(filename))
-		self.directoryMap[directory].addFile(filename)
+		assert(filepath is not None)
+		self._root.addFile(filepath)
 	
-	def buildRepresentation(self, logicSchema):
+	def buildRepresentation(self):
 		""" builds the structure of the shhiiieeeet"""
-		tocreate = [self.root]
-		while len(toCreate) > 0:
-			currentDirectory = toCreate.pop()
-			for child in currentDirectory.children:
-				toCreate.append(child)
-			currentDirectory.build()
+		self._root.build()
 			
 			
 			
