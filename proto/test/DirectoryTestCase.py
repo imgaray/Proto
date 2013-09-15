@@ -51,6 +51,19 @@ class DirectoryTestCase(TestCase):
 		self.assertEqual(len(expecteddir), len(direct.directoryBuilder.directories))
 		self.assertEqual(expecteddir, direct.directoryBuilder.directories)
 		
+	def test_add_single_file(self):
+		direct = self.create_nested_leaf(2)
+		direct.addFile("myfile")
+		self.assertTrue(direct.hasFile("myfile"))
+		
+	def test_add_duplicated_file(self):
+		direct = self.create_nested_leaf(2)
+		direct.addFile("myfile")
+		with self.assertRaises(AssertionError):
+			direct.addFile("myfile")
+		self.assertEqual(1, direct.filesCount)
+		
+		
 		
 if __name__ == '__main__':
     unittest2.main()

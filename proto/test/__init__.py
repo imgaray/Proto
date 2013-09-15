@@ -1,2 +1,3 @@
 from .FileTestCase import FileTestCase
 from .DirectoryTestCase import DirectoryTestCase
+from .DirectorySchemaTestCase import DirectorySchemaTestCase

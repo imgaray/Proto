@@ -18,8 +18,8 @@ class Directory(object):
 		return filename in self.filemap
 				
 	def addFile(self, filename):
-		if not self.hasFile(filename):
-			self.filemap[filename] = File(filename, self, self.fileBuilder)
+		assert(not self.hasFile(filename))
+		self.filemap[filename] = File(filename, self, self.fileBuilder)
 		
 	@property	
 	def fullPath(self):
