@@ -1,10 +1,1 @@
-from .Class import Class
-from .Directory import Directory
-from .DirectorySchema import DirectorySchema
-from .File import File
-from .Generator import Generator
-from .GlobalConfiguration import GlobalConfiguration
-from .LogicSchema import LogicSchema
-from .Package import Package
-from .ProjectFactory import ProjectFactory
-from .utils import *
+__all__ = ["Class", "Directory", "DirectorySchema", "File", "Generator", "GlobalConfiguration", "LogicSchema", "Package", "ProjectFactory", "utils"]
